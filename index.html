@@ -74,9 +74,9 @@ body {
 
 /* Glassmorphism Container */
 .container {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.15);
   border-radius: 20px;
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(15px);
   padding: 30px;
   width: 90%;
   max-width: 1200px;
@@ -173,8 +173,9 @@ p {
 
 /* Links Container */
 .links-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 15px;
   margin-top: 20px;
   opacity: 0;
@@ -195,7 +196,7 @@ p {
 
 /* Links */
 .link {
-  padding: 18px 18px;
+  padding: 18px 12px;
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
@@ -206,7 +207,7 @@ p {
   border-radius: 15px;
   transition: all 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
   display: inline-block;
-  min-width: 220px;
+  min-width: 250px;
   white-space: normal;
 }
 
@@ -228,16 +229,18 @@ p {
 .social-buttons {
   margin-top: 30px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 15px;
   opacity: 0;
   animation: fadeInButtons 2s ease-out 3s forwards; /* Add the same delay as the links */
 }
 
+
 /* Social Buttons */
 .button {
   display: inline-block;
-  padding: 12px 20px;
+  padding: 12px 12px;
   font-size: 1rem;
   font-weight: bold;
   text-decoration: none;
