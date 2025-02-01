@@ -1,192 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mr. Smiley's Site</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
-    #bg-image {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      object-fit: cover;
-      opacity: 1; /* Adjust the opacity to suit your needs */
-    }
-    .container {
-      max-width: 1140px;
-      margin: 0 auto;
-      padding: 0 15px;
-    }
-    .image-container {
-      text-align: center;
-      padding-top: 30px;
-    }
-    .links-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 5px;
-      margin-top: 20px;
-    }
-    .link {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 30px;
-      margin: 0;
-      width: 250px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #fff;
-      background-color: #0d56d9;
-      border-radius: 15px;
-      text-align: center;
-      text-decoration: none;
-      font-family: "Helvetica Neue", sans-serif;
-      transition: background-color 0.3s ease;
-    }
-    .link:hover {
-      background-color: #0066ff;
-      box-shadow: 0px 0px 10px 5px rgba(0, 128, 0, 0.5), 0px 0px 20px 10px rgba(0, 128, 0, 0.3), 0px 0px 30px 15px rgba(0, 128, 0, 0.2);
-    }
-    .link img {
-      max-width: 100%;
-    }
-    .link span {
-      margin-top: 15px;
-    }
-    .social-buttons {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 50px 0;
-    }
-    .social-text {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 20px;
-      color: #fff;
-    }
-    .button-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .button {
-      display: inline-block;
-      padding: 12px 20px;
-      margin: 1px;
-      width: 150px;
-      border: none;
-      border-radius: 15px;
-      font-size: 18px;
-      font-weight: bold;
-      text-align: center;
-      text-decoration: none;
-      color: #fff;
-      font-family: "Helvetica Neue", sans-serif;
-      transition: background-color 0.3s ease;
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
-    }
-    .button:hover {
-      background-color: #0066ff;
-      box-shadow: 0px 2px 10px rgba(0, 102, 255, 0.8), 0px 5px 20px rgba(0, 102, 255, 0.5), 0px 10px 30px rgba(0, 102, 255, 0.3);
-    }
-    .facebook {
-      background-color: #3b5998;
-    }
-    .discord {
-      background-color: #7289da;
-    }
-    .instagram {
-      background-color: #997b55;
-    }
-    .twitter {
-      background-color: #013059;
-    }
-    .snapchat {
-      background-color: #019b61;
-    }
-    .github {
-      background-color: #484848;
-    }
-    .smiley-yellow {
-      background-color: #f3ec19 !important;
-    }
+    /* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #0a0a0a;
+  color: white;
+  text-align: center;
+  overflow-y: auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+/* Swirling Animated Background */
+#bg-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, #041fe0, #621299, #1c1759);
+  background-size: 400% 400%;
+  animation: swirlMotion 60s infinite ease-in-out;
+  z-index: -1;
+}
+
+@keyframes swirlMotion {
+  0% {
+    background-position: 0% 0%;
+    transform: scale(1.05);
+  }
+
+  25% {
+    background-position: 100% 0%;
+    transform: scale(1.1);
+  }
+
+  50% {
+    background-position: 100% 100%;
+    transform: scale(1.05);
+  }
+
+  75% {
+    background-position: 0% 100%;
+    transform: scale(1.1);
+  }
+
+  100% {
+    background-position: 0% 0%;
+    transform: scale(1.05);
+  }
+}
+
+/* Glassmorphism Container */
+.container {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  padding: 30px;
+  width: 90%;
+  max-width: 1200px;
+  box-shadow: 0 5px 25px rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  animation: fadeIn 2s ease-out 0s forwards; /* Delay of 0s for container */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Profile Image */
+.profile {
+  filter: brightness(1.2);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid white;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, border 0.3s ease;
+  opacity: 0;
+  animation: fadeInImage 1s ease-out 1s forwards; /* Delay of 1s for profile image */
+}
+
+@keyframes fadeInImage {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profile:hover {
+  transform: scale(1.1);
+  border: 3px solid #ffcc00;
+}
+
+/* Section Titles */
+h2,
+h3 {
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: slideInText 1.5s ease-out 2s forwards; /* Delay of 2s for title text */
+}
+
+h2 span {
+  filter: brightness(1.2);
+  color: #ffcc00;
+}
+
+@keyframes slideInText {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Text under the title with fade-in and slight delay */
+p {
+  margin-top: 20px;
+  opacity: 0;
+  animation: fadeInText 2s ease-out 2.5s forwards; /* Delay of 2.5s for paragraph */
+}
+
+@keyframes fadeInText {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Links Container */
+.links-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+  opacity: 0;
+  animation: fadeInButtons 2s ease-out 3s forwards; /* Delay of 3s for buttons */
+}
+
+@keyframes fadeInButtons {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Links */
+.link {
+  padding: 18px 18px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  transition: all 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+  min-width: 220px;
+  white-space: normal;
+}
+
+.link:hover {
+  filter: brightness(1.2);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+  color: #ffcc00;
+  transform: scale(1.05);
+  text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00;
+}
+
+.link:focus,
+.link:active {
+  filter: brightness(1.2);
+  transform: scale(1.05);
+}
+
+/* Social Buttons Container */
+.social-buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  opacity: 0;
+  animation: fadeInButtons 2s ease-out 3s forwards; /* Add the same delay as the links */
+}
+
+/* Social Buttons */
+.button {
+  display: inline-block;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+  border-radius: 10px;
+  transition: all 0.3s ease, box-shadow 0.3s ease;
+  min-width: 150px;
+}
+
+.button:hover {
+  filter: brightness(1.2);
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+  color: #ffcc00;
+  text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00;
+}
+
+/* Individual Social Buttons Colors */
+.facebook {
+  background: #3b5998;
+}
+
+.discord {
+  background: #7289da;
+}
+
+.instagram {
+  background: #c13584;
+}
+
+.twitter {
+  background: #1da1f2;
+}
+
+.github {
+  background: #333;
+}
+
+
   </style>
 </head>
 
-<body class="w3-white">
-  <!-- <video autoplay muted loop id="bg-video">
-    <source src="https://drive.google.com/uc?export=download&id=108dlHhXcJ4cKMXaJXeNhIpliTmbv0aR5" type="video/mp4">
-    Your browser does not support the video tag.
-  </video> -->
-  <img id="bg-image" src="./color-doodles.png" alt="Background Image">
-    <!-- Content container -->
-    <div class="container">
-      <!-- Image and name container. Change to your picture here. -->
-      <div class="image-container">
-        <img
-          src="https://i.ibb.co/j5j8GDB/Smiley.png"
-          class="w3-margin"
-          alt="Person"
-          max-width="100%"
-          height="150px"
-          style="border-radius: 50%"
-        />
-        <div class="w3-text-white">
-          <p class="w3-text-white w3-large"> Welcome to <span class="w3-tag w3-large w3-round smiley-yellow w3-text-black"><strong>Mr. Smiley's</strong></span> site!
-          </p>
-          <p class="social-text"><strong>Links to my programs</strong></p>
-        </div>
+<body>
+  <div id="bg-animation"></div>
 
-        <!-- <a href="#" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>#</a> -->
-        <div class="links-container">
-          <a href="https://replit.com/@tutu10/DOSBOX?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>DOSBOX</a>
-          <a href="https://replit.com/@MrSmiley01/MaxPhisher?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>MaxPhisher</a>
-          <a href="https://replit.com/@MrSmiley01/ig-bomber?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>IG Bomber</a>
-          <a href="https://replit.com/@MrSmiley01/YT2MP3?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>YT2MP3</a>
-          <a href="https://replit.com/@MrSmiley01/ChatGPT-Free?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>Free ChatGPT</a>
-          <a href="https://replit.com/@MrSmiley01/Sudoku?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>Sudoku</a>
-          <a href="https://replit.com/@MrSmiley01/CamPhish?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>CamPhish</a>
-          <a href="https://replit.com/@MrSmiley01/Fortune?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>Fortune</a>
-          <a href="https://replit.com/@MrSmiley01/Simple-Cash-Memo-GUI?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>Cash Memo GUI</a>
-          <a href="https://replit.com/@MrSmiley01/Translate?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>Translate</a>
-          <a href="https://replit.com/@MrSmiley01/Passwords-Generator?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>Passwords Generator</a>
-          <a href="https://replit.com/@MrSmiley01/QR-Code-Generator?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>QR Code Generator</a>
-          <a href="https://replit.com/@MrSmiley01/Bold-Text-Generator-Beta?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>Bold Text Generator</a>
-          <a href="https://replit.com/@MrSmiley01/Firefox-Reupload?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>Firefox Online</a>
-          <a href="https://replit.com/@MrSmiley01/URL-Shorteners?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>URL Shorteners</a>
-          <a href="https://replit.com/@MrSmiley01/The-Guess-Game?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>The Guess Game</a>
-          <a href="https://replit.com/@MrSmiley01/Age-Calculator?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>Age Calculator</a>
-          <a href="https://replit.com/@MrSmiley01/Text-To-Speech?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>Text To Speech</a>
-          <a href="https://replit.com/@MrSmiley01/Hydrogen-Spectrum-Series?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>Hydrogen Spectrum Series</a>
-          <a href="https://replit.com/@MrSmiley01/Rock-Scissors-Paper?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>Rock, Scissors, Paper</a>
-          <a href="https://replit.com/@MrSmiley01/Roll-The-Dice?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>Roll The Dice</a>
-          <a href="https://replit.com/@MrSmiley01/Special-theory-of-relativity-equations?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>STR Equations</a>
-          <a href="https://replit.com/@MrSmiley01/Math-Helper?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>Math Helper</a>
-          <a href="https://replit.com/@MrSmiley01/Simple-Binary-Codes-Loop?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>Binary Codes Loop</a>
-          <a href="https://replit.com/@MrSmiley01/Digital-Clock?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>Digital Clock</a>
-          <a href="https://replit.com/@MrSmiley01/Periodic-Table?v=1" class="w3-button w3-hover-green w3-large w3-round link" target="_blank"><i class=""></i>Periodic Table</a>
-        </div>
-        <hr>
-        <div class="social-buttons">
-  <p class="social-text">Find Me On:</p>
-  <div class="button-container">
-    <a href="https://www.facebook.com/mr.smiley.fb" class="button facebook">Facebook</a>
-    <a href="https://discord.gg/FPkcv6xcM8" class="button discord">Discord</a>
-    <a href="https://www.instagram.com/mr.smiley.insta/" class="button instagram">Instagram</a>
-    <a href="https://twitter.com/mr_smiley_01" class="button twitter">Twitter</a>
-    <a href="https://www.snapchat.com/add/musaddiq_sultan" class="button snapchat">Snapchat</a>
-    <a href="https://github.com/musaddiq-sultan" class="button github">GitHub</a>
-  </div>
-  </div>
-        <br>
-      </div>
+  <div class="container">
+    <img src="https://i.ibb.co/j5j8GDB/Smiley.png" class="profile" alt="Mr. Smiley">
+    <h2>Welcome to <span>Mr. Smiley's</span> Site!</h2>
+    <p>Explore my awesome projects below:</p>
+
+    <div class="links-container">
+      <a href="https://replit.com/@tutu10/DOSBOX?v=1" class="link" target="_blank"><i class=""></i>DOSBOX</a>
+          <a href="https://replit.com/@MrSmiley01/MaxPhisher?v=1" class="link" target="_blank"><i class=""></i>MaxPhisher</a>
+          <a href="https://replit.com/@MrSmiley01/ig-bomber?v=1" class="link" target="_blank"><i class=""></i>IG Bomber</a>
+          <a href="https://replit.com/@MrSmiley01/YT2MP3?v=1" class="link" target="_blank"><i class=""></i>YT2MP3</a>
+          <a href="https://replit.com/@MrSmiley01/ChatGPT-Free?v=1" class="link" target="_blank"><i class=""></i>Free ChatGPT</a>
+          <a href="https://replit.com/@MrSmiley01/Sudoku?v=1" class="link" target="_blank"><i class=""></i>Sudoku</a>
+          <a href="https://replit.com/@MrSmiley01/CamPhish?v=1" class="link" target="_blank"><i class=""></i>CamPhish</a>
+          <a href="https://replit.com/@MrSmiley01/Fortune?v=1" class="link" target="_blank"><i class=""></i>Fortune</a>
+          <a href="https://replit.com/@MrSmiley01/Simple-Cash-Memo-GUI?v=1" class="link" target="_blank"><i class=""></i>Cash Memo GUI</a>
+          <a href="https://replit.com/@MrSmiley01/Translate?v=1" class="link" target="_blank"><i class=""></i>Translate</a>
+          <a href="https://replit.com/@MrSmiley01/Passwords-Generator?v=1" class="link" target="_blank"><i class=""></i>Passwords Generator</a>
+          <a href="https://replit.com/@MrSmiley01/QR-Code-Generator?v=1" class="link" target="_blank"><i class=""></i>QR Code Generator</a>
+          <a href="https://replit.com/@MrSmiley01/Bold-Text-Generator-Beta?v=1" class="link" target="_blank"><i class=""></i>Bold Text Generator</a>
+          <a href="https://replit.com/@MrSmiley01/Firefox-Reupload?v=1" class="link" target="_blank"><i class=""></i>Firefox Online</a>
+          <a href="https://replit.com/@MrSmiley01/URL-Shorteners?v=1" class="link" target="_blank"><i class=""></i>URL Shorteners</a>
+          <a href="https://replit.com/@MrSmiley01/The-Guess-Game?v=1" class="link" target="_blank"><i class=""></i>The Guess Game</a>
+          <a href="https://replit.com/@MrSmiley01/Age-Calculator?v=1" class="link" target="_blank"><i class=""></i>Age Calculator</a>
+          <a href="https://replit.com/@MrSmiley01/Text-To-Speech?v=1" class="link" target="_blank"><i class=""></i>Text To Speech</a>
+          <a href="https://replit.com/@MrSmiley01/Hydrogen-Spectrum-Series?v=1" class="link" target="_blank"><i class=""></i>Hydrogen Spectrum Series</a>
+          <a href="https://replit.com/@MrSmiley01/Rock-Scissors-Paper?v=1" class="link" target="_blank"><i class=""></i>Rock, Scissors, Paper</a>
+          <a href="https://replit.com/@MrSmiley01/Roll-The-Dice?v=1" class="link" target="_blank"><i class=""></i>Roll The Dice</a>
+          <a href="https://replit.com/@MrSmiley01/Special-theory-of-relativity-equations?v=1" class="link" target="_blank"><i class=""></i>STR Equations</a>
+          <a href="https://replit.com/@MrSmiley01/Math-Helper?v=1" class="link" target="_blank"><i class=""></i>Math Helper</a>
+          <a href="https://replit.com/@MrSmiley01/Simple-Binary-Codes-Loop?v=1" class="link" target="_blank"><i class=""></i>Binary Codes Loop</a>
+          <a href="https://replit.com/@MrSmiley01/Digital-Clock?v=1" class="link" target="_blank"><i class=""></i>Digital Clock</a>
+          <a href="https://replit.com/@MrSmiley01/Periodic-Table?v=1" class="link" target="_blank"><i class=""></i>Periodic Table</a>
+      <!-- Add the remaining links here -->
     </div>
-  </body>
+  </div>
+
+  <div class="container" style="margin-top: 30px;">
+    <h3>Find me on:</h3>
+
+    <div class="social-buttons">
+      <a href="https://www.facebook.com/mr.smiley.fb" class="button facebook">Facebook</a>
+      <a href="https://discord.gg/FPkcv6xcM8" class="button discord">Discord</a>
+      <a href="https://www.instagram.com/mr.smiley.insta/" class="button instagram">Instagram</a>
+      <a href="https://twitter.com/MrSmiley_Tweet" class="button twitter">Twitter</a>
+      <a href="https://github.com/MrSmileyDev" class="button github">GitHub</a>
+    </div>
+  </div>
+</body>
+
 </html>
