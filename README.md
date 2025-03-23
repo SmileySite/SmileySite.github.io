@@ -1,2 +1,2 @@
 # Website Link:
-<a href="https://smileysite.github.io/">Mr. Smiley's Site</a>
+[Smiley's Site](https://smileysite.netlify.app)
